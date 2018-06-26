@@ -85,6 +85,7 @@ readonly FILES=(
     Objects/object.c
     Objects/exceptions.c
     Python/errors.c
+    ../ovm.c
 )
 
 build() {
@@ -119,9 +120,16 @@ tag() {
   popd
 }
 
-pygrep() {
+grep-all() {
   local pat=$1
   grep "$pat" $PY27/{Modules,Objects}/*.[ch]
+}
+
+grep-subset() {
+  local pat=$1
+  pushd $PY27 >/dev/null
+  grep "$pat" "${FILES[@]}"
+  popd >/dev/null
 }
 
 "$@"
