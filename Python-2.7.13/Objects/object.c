@@ -2072,6 +2072,7 @@ PyObject _Py_NotImplementedStruct = {
 void
 _Py_ReadyTypes(void)
 {
+#ifndef OVM_SLICE
     if (PyType_Ready(&PyType_Type) < 0)
         Py_FatalError("Can't initialize type type");
 
@@ -2083,6 +2084,7 @@ _Py_ReadyTypes(void)
 
     if (PyType_Ready(&_PyWeakref_ProxyType) < 0)
         Py_FatalError("Can't initialize weakref proxy type");
+#endif
 
     if (PyType_Ready(&PyBool_Type) < 0)
         Py_FatalError("Can't initialize bool type");
@@ -2102,6 +2104,7 @@ _Py_ReadyTypes(void)
     if (PyType_Ready(&PyNotImplemented_Type) < 0)
         Py_FatalError("Can't initialize NotImplemented type");
 
+#ifndef OVM_SLICE
     if (PyType_Ready(&PyTraceBack_Type) < 0)
         Py_FatalError("Can't initialize traceback type");
 
@@ -2110,6 +2113,7 @@ _Py_ReadyTypes(void)
 
     if (PyType_Ready(&PyBaseObject_Type) < 0)
         Py_FatalError("Can't initialize object type");
+#endif
 
     if (PyType_Ready(&PyRange_Type) < 0)
         Py_FatalError("Can't initialize xrange type");
@@ -2120,7 +2124,8 @@ _Py_ReadyTypes(void)
     if (PyType_Ready(&PySet_Type) < 0)
         Py_FatalError("Can't initialize set type");
 
-#ifdef Py_USING_UNICODE
+//#ifdef Py_USING_UNICODE
+#ifndef OVM_SLICE
     if (PyType_Ready(&PyUnicode_Type) < 0)
         Py_FatalError("Can't initialize unicode type");
 #endif
@@ -2145,6 +2150,7 @@ _Py_ReadyTypes(void)
     if (PyType_Ready(&PyLong_Type) < 0)
         Py_FatalError("Can't initialize long type");
 
+#ifndef OVM_SLICE
     if (PyType_Ready(&PyInt_Type) < 0)
         Py_FatalError("Can't initialize int type");
 
@@ -2156,21 +2162,26 @@ _Py_ReadyTypes(void)
 
     if (PyType_Ready(&PyMemoryView_Type) < 0)
         Py_FatalError("Can't initialize memoryview type");
+#endif
 
     if (PyType_Ready(&PyTuple_Type) < 0)
         Py_FatalError("Can't initialize tuple type");
 
+#ifndef OVM_SLICE
     if (PyType_Ready(&PyEnum_Type) < 0)
         Py_FatalError("Can't initialize enumerate type");
+#endif
 
     if (PyType_Ready(&PyReversed_Type) < 0)
         Py_FatalError("Can't initialize reversed type");
 
+#ifndef OVM_SLICE
     if (PyType_Ready(&PyCode_Type) < 0)
         Py_FatalError("Can't initialize code type");
 
     if (PyType_Ready(&PyFrame_Type) < 0)
         Py_FatalError("Can't initialize frame type");
+#endif
 
     if (PyType_Ready(&PyCFunction_Type) < 0)
         Py_FatalError("Can't initialize builtin function type");
@@ -2181,11 +2192,13 @@ _Py_ReadyTypes(void)
     if (PyType_Ready(&PyFunction_Type) < 0)
         Py_FatalError("Can't initialize function type");
 
+#ifndef OVM_SLICE
     if (PyType_Ready(&PyClass_Type) < 0)
         Py_FatalError("Can't initialize class type");
 
     if (PyType_Ready(&PyDictProxy_Type) < 0)
         Py_FatalError("Can't initialize dict proxy type");
+#endif
 
     if (PyType_Ready(&PyGen_Type) < 0)
         Py_FatalError("Can't initialize generator type");
