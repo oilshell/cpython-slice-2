@@ -84,9 +84,12 @@ _build() {
 
 readonly FILES=(
     Objects/longobject.c 
+    # float causes more link errors?
+    #Objects/floatobject.c
     Objects/boolobject.c
     Objects/stringobject.c 
     Objects/dictobject.c 
+    # set causes more link errors?
     #Objects/setobject.c
     Objects/listobject.c
     Objects/tupleobject.c
