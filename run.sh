@@ -48,7 +48,8 @@ _build() {
 }
 
 # Starting with longobject.c
-# - It needs its typeobject.c
+# - It needs its typeobject.c -- do NOT want this.  6800 lines of the
+# meta-object protocol.
 # - It needs errors.c, which needs exceptions.c
 #   - exceptions seems to need dicts
 #   - dicts need garbage collection!
@@ -71,22 +72,28 @@ _build() {
 
 # What about: bool?  This is just int?
 
+    #Objects/typeobject.c
+    #Python/marshal.c \
+    #Objects/codeobject.c \
 readonly FILES=(
     Objects/longobject.c 
     Objects/stringobject.c 
     Objects/dictobject.c 
     Objects/listobject.c
     Objects/tupleobject.c
-    Objects/typeobject.c
     Objects/object.c
     Objects/exceptions.c
     Python/errors.c
-    #Python/marshal.c \
-    #Objects/codeobject.c \
 )
 
 build() {
-  _build "${FILES[@]}"
+  local out=_tmp/build-$$.pid
+
+  set +o errexit
+  _build "${FILES[@]}" 2>&1 | tee $out
+
+  echo
+  wc -l $out
 }
 
 count() {
