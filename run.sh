@@ -94,6 +94,7 @@ readonly FILES=(
     Objects/exceptions.c
     Python/errors.c
     Python/mysnprintf.c
+    Python/sigcheck.c
     ../ovm.c
 )
 
