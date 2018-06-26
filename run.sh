@@ -91,6 +91,7 @@ readonly FILES=(
     Objects/listobject.c
     Objects/tupleobject.c
     Objects/object.c
+    Objects/abstract.c
     Objects/exceptions.c
     Objects/obmalloc.c
     Python/errors.c
