@@ -837,15 +837,21 @@ delete_garbage(PyGC_Head *collectable, PyGC_Head *old)
 static void
 clear_freelists(void)
 {
+#ifndef OVM_SLICE
     (void)PyMethod_ClearFreeList();
     (void)PyFrame_ClearFreeList();
     (void)PyCFunction_ClearFreeList();
+#endif
     (void)PyTuple_ClearFreeList();
-#ifdef Py_USING_UNICODE
+//#ifdef Py_USING_UNICODE
+#ifndef OVM_SLICE
     (void)PyUnicode_ClearFreeList();
 #endif
+#ifndef OVM_SLICE
+    // we have longs and not ints
     (void)PyInt_ClearFreeList();
     (void)PyFloat_ClearFreeList();
+#endif
 }
 
 static double
