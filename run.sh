@@ -15,9 +15,11 @@ readonly INCLUDE_PATHS=(-I . -I Include)
 
 readonly EMPTY_STR='""'
 
+# Using OVM_SLICE instead of OVM_MAIN
+
 # Stub out a few variables
 readonly PREPROC_FLAGS=(
-  -D OVM_MAIN \
+  -D OVM_SLICE \
   -D PYTHONPATH="$EMPTY_STR" \
   -D VERSION="$EMPTY_STR" \
   -D VPATH="$EMPTY_STR" \

@@ -900,6 +900,7 @@ try_3way_to_rich_compare(PyObject *v, PyObject *w, int op)
     c = try_3way_compare(v, w);
     if (c >= 2) {
 
+#ifndef OVM_SLICE
         /* Py3K warning if types are not equal and comparison isn't == or !=  */
         if (Py_Py3kWarningFlag &&
             v->ob_type != w->ob_type && op != Py_EQ && op != Py_NE &&
@@ -908,6 +909,7 @@ try_3way_to_rich_compare(PyObject *v, PyObject *w, int op)
                        "in 3.x", 1) < 0) {
             return NULL;
         }
+#endif
 
         c = default_3way_compare(v, w);
     }
@@ -1767,6 +1769,7 @@ merge_list_attr(PyObject* dict, PyObject* obj, const char *attrname)
                     break;
             }
         }
+#ifndef OVM_SLICE
         if (Py_Py3kWarningFlag &&
             (strcmp(attrname, "__members__") == 0 ||
              strcmp(attrname, "__methods__") == 0)) {
@@ -1777,6 +1780,7 @@ merge_list_attr(PyObject* dict, PyObject* obj, const char *attrname)
                 return -1;
             }
         }
+#endif
     }
 
     Py_XDECREF(list);

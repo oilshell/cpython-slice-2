@@ -1,8 +1,15 @@
 /* Print fatal error message and abort */
 
-#include <stdio.h>
+#include <stdio.h>   // fprintf()
+#include <stdlib.h>  // abort()
 
-// from ceval.c
+#include "Python.h"
+#include "pystate.h"
+
+// from Python/pystate.c
+PyThreadState *_PyThreadState_Current = NULL;
+
+// from Python/ceval.c
 volatile int _Py_Ticker = 0; /* so that we hit a "tick" first thing */
 
 void
