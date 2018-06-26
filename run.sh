@@ -134,7 +134,7 @@ tag() {
 
 grep-all() {
   local pat=$1
-  grep "$pat" $PY27/{Modules,Objects}/*.[ch]
+  grep "$pat" $PY27/{Python,Modules,Objects}/*.[ch]
 }
 
 grep-subset() {

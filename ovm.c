@@ -12,6 +12,18 @@ PyThreadState *_PyThreadState_Current = NULL;
 // from Python/ceval.c
 volatile int _Py_Ticker = 0; /* so that we hit a "tick" first thing */
 
+// from Python/ceval.c
+PyThreadState *
+PyEval_SaveThread(void)
+{
+  return _PyThreadState_Current;
+}
+
+void
+PyEval_RestoreThread(PyThreadState *tstate)
+{
+}
+
 // Risky stub!!!
 int
 PyType_Ready(PyTypeObject *type)
