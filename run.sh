@@ -97,11 +97,11 @@ readonly FILES=(
     Python/errors.c
     Python/mysnprintf.c
     Python/sigcheck.c
+    Python/modsupport.c
+    Python/getargs.c
     Modules/gcmodule.c
     ../ovm.c
 )
-    #Python/modsupport.c
-    #Python/getargs.c
 
 build() {
   local out=_tmp/build-$$.pid
