@@ -99,6 +99,8 @@ readonly FILES=(
     Modules/gcmodule.c
     ../ovm.c
 )
+    #Python/modsupport.c
+    #Python/getargs.c
 
 build() {
   local out=_tmp/build-$$.pid

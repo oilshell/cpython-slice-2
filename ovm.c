@@ -38,6 +38,13 @@ PyType_Ready(PyTypeObject *type)
   return 0;
 }
 
+// from Python/_warnings.c
+int
+PyErr_WarnEx(PyObject *category, const char *text, Py_ssize_t stack_level)
+{
+  return 0;
+}
+
 void
 Py_FatalError(const char *msg)
 {
