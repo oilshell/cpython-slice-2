@@ -24,6 +24,13 @@ PyEval_RestoreThread(PyThreadState *tstate)
 {
 }
 
+// Copied from intobject.c, removed all but the long case.
+PyObject *
+PyInt_FromSsize_t(Py_ssize_t ival)
+{
+    return _PyLong_FromSsize_t(ival);
+}
+
 // Risky stub!!!
 int
 PyType_Ready(PyTypeObject *type)
