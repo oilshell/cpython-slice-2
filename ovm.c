@@ -12,6 +12,13 @@ PyThreadState *_PyThreadState_Current = NULL;
 // from Python/ceval.c
 volatile int _Py_Ticker = 0; /* so that we hit a "tick" first thing */
 
+// Risky stub!!!
+int
+PyType_Ready(PyTypeObject *type)
+{
+  return 0;
+}
+
 void
 Py_FatalError(const char *msg)
 {
