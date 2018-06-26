@@ -75,8 +75,14 @@ _build() {
     #Python/marshal.c \
     #Objects/codeobject.c \
     #Objects/typeobject.c
+    #Objects/typeobject.c
+
+# NOTE: boolobject.c isn't technically necessary, but it's an easy way to
+# reduce the number of link errors.
+
 readonly FILES=(
     Objects/longobject.c 
+    Objects/boolobject.c
     Objects/stringobject.c 
     Objects/dictobject.c 
     #Objects/setobject.c

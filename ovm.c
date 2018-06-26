@@ -2,6 +2,9 @@
 
 #include <stdio.h>
 
+// from ceval.c
+volatile int _Py_Ticker = 0; /* so that we hit a "tick" first thing */
+
 void
 Py_FatalError(const char *msg)
 {
