@@ -47,11 +47,21 @@ _build() {
   popd
 }
 
+# Starting with longobject.c
+# - It needs its typeobject.c
+# - It needs errors.c, which needs exceptions.c
+
+# Problem: I really want just a basic arbitrarily sized int, without
+# reflection, subclassing, etc.  No garbage collection either?
+
 build() {
   _build \
-    Python/marshal.c \
     Objects/longobject.c \
-    Objects/codeobject.c \
+    Objects/typeobject.c \
+    Objects/exceptions.c \
+    Python/errors.c \
+    #Python/marshal.c \
+    #Objects/codeobject.c \
     "$@"
 }
 
