@@ -92,6 +92,7 @@ readonly FILES=(
     Objects/tupleobject.c
     Objects/object.c
     Objects/exceptions.c
+    Objects/obmalloc.c
     Python/errors.c
     Python/mysnprintf.c
     Python/sigcheck.c
