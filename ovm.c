@@ -9,10 +9,11 @@
 // from Python/pystate.c
 PyThreadState *_PyThreadState_Current = NULL;
 
+//
 // from Python/ceval.c
+//
 volatile int _Py_Ticker = 0; /* so that we hit a "tick" first thing */
 
-// from Python/ceval.c
 PyThreadState *
 PyEval_SaveThread(void)
 {
@@ -24,6 +25,9 @@ PyEval_RestoreThread(PyThreadState *tstate)
 {
 }
 
+#define Py_DEFAULT_RECURSION_LIMIT 1000
+int _Py_CheckRecursionLimit = Py_DEFAULT_RECURSION_LIMIT;
+
 // Copied from intobject.c, removed all but the long case.
 PyObject *
 PyInt_FromSsize_t(Py_ssize_t ival)
@@ -31,7 +35,10 @@ PyInt_FromSsize_t(Py_ssize_t ival)
     return _PyLong_FromSsize_t(ival);
 }
 
+//
+// From Objects/typeobject.c
 // Risky stub!!!
+//
 int
 PyType_Ready(PyTypeObject *type)
 {
