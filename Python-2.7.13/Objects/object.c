@@ -2190,6 +2190,7 @@ _Py_ReadyTypes(void)
     if (PyType_Ready(&PyGen_Type) < 0)
         Py_FatalError("Can't initialize generator type");
 
+#ifndef OVM_SLICE
     if (PyType_Ready(&PyGetSetDescr_Type) < 0)
         Py_FatalError("Can't initialize get-set descriptor type");
 
@@ -2210,6 +2211,7 @@ _Py_ReadyTypes(void)
 
     if (PyType_Ready(&PyCapsule_Type) < 0)
         Py_FatalError("Can't initialize capsule type");
+#endif
 
     if (PyType_Ready(&PyCell_Type) < 0)
         Py_FatalError("Can't initialize cell type");
