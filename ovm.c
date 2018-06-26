@@ -28,6 +28,12 @@ PyEval_RestoreThread(PyThreadState *tstate)
 #define Py_DEFAULT_RECURSION_LIMIT 1000
 int _Py_CheckRecursionLimit = Py_DEFAULT_RECURSION_LIMIT;
 
+int
+_Py_CheckRecursiveCall(const char *where)
+{
+  return 0;
+}
+
 // Copied from intobject.c, removed all but the long case.
 PyObject *
 PyInt_FromSsize_t(Py_ssize_t ival)
