@@ -50,19 +50,49 @@ _build() {
 # Starting with longobject.c
 # - It needs its typeobject.c
 # - It needs errors.c, which needs exceptions.c
+#   - exceptions seems to need dicts
+#   - dicts need garbage collection!
 
 # Problem: I really want just a basic arbitrarily sized int, without
 # reflection, subclassing, etc.  No garbage collection either?
 
-build() {
-  _build \
-    Objects/longobject.c \
-    Objects/typeobject.c \
-    Objects/exceptions.c \
-    Python/errors.c \
+# Other stuff we might need: 
+# - ref counting
+# - garbage collection
+# - slices?  Or could we reimplement that without the generic objects?
+# - Stuff for the C API, e.g. args.c
+#   - TODO: Test native/libc.c, which mostly uses PyArg_ParseTuple() etc.
+
+# Excluded:
+# - classobject.c (old style and new style)
+# - fileobject.c
+# - for now: floats (brings in float to string conversion, etc.)
+# - descriptors
+
+# What about: bool?  This is just int?
+
+readonly FILES=(
+    Objects/longobject.c 
+    Objects/stringobject.c 
+    Objects/dictobject.c 
+    Objects/listobject.c
+    Objects/tupleobject.c
+    Objects/typeobject.c
+    Objects/object.c
+    Objects/exceptions.c
+    Python/errors.c
     #Python/marshal.c \
     #Objects/codeobject.c \
-    "$@"
+)
+
+build() {
+  _build "${FILES[@]}"
+}
+
+count() {
+  pushd $PY27 >/dev/null
+  wc -l "${FILES[@]}" | sort -n
+  popd >/dev/null
 }
 
 tag() {
