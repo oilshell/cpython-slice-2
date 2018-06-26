@@ -72,13 +72,14 @@ _build() {
 
 # What about: bool?  This is just int?
 
-    #Objects/typeobject.c
     #Python/marshal.c \
     #Objects/codeobject.c \
+    #Objects/typeobject.c
 readonly FILES=(
     Objects/longobject.c 
     Objects/stringobject.c 
     Objects/dictobject.c 
+    #Objects/setobject.c
     Objects/listobject.c
     Objects/tupleobject.c
     Objects/object.c
@@ -94,6 +95,16 @@ build() {
 
   echo
   wc -l $out
+
+  count-undefined $out
+}
+
+# link errors: undefined reference
+count-undefined() {
+  egrep -o 'undefined reference to `.*' "$@" > _tmp/undefined.txt
+  cat _tmp/undefined.txt | sort | uniq -c | sort -n
+  echo
+  wc -l _tmp/undefined.txt
 }
 
 count() {
