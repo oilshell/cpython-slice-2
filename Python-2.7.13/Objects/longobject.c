@@ -1993,7 +1993,8 @@ digit beyond the first.
     return NULL;
 }
 
-#ifdef Py_USING_UNICODE
+//#ifdef Py_USING_UNICODE
+#ifndef OVM_SLICE
 PyObject *
 PyLong_FromUnicode(Py_UNICODE *u, Py_ssize_t length, int base)
 {
@@ -4046,7 +4047,8 @@ long_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
         }
         return PyLong_FromString(PyString_AS_STRING(x), NULL, base);
     }
-#ifdef Py_USING_UNICODE
+//#ifdef Py_USING_UNICODE
+#ifndef OVM_SLICE
     else if (PyUnicode_Check(x))
         return PyLong_FromUnicode(PyUnicode_AS_UNICODE(x),
                                   PyUnicode_GET_SIZE(x),
