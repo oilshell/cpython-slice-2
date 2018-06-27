@@ -1406,6 +1406,7 @@ dict_fromkeys(PyObject *cls, PyObject *args)
             }
             return d;
         }
+#ifndef OVM_SLICE
         if (PyAnySet_CheckExact(seq)) {
             PyDictObject *mp = (PyDictObject *)d;
             Py_ssize_t pos = 0;
@@ -1427,6 +1428,7 @@ dict_fromkeys(PyObject *cls, PyObject *args)
             }
             return d;
         }
+#endif
     }
 
     it = PyObject_GetIter(seq);
