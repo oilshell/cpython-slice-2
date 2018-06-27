@@ -92,6 +92,7 @@ readonly FILES=(
     # set causes more link errors?
     #Objects/setobject.c
     Objects/listobject.c
+    Objects/sliceobject.c
     Objects/tupleobject.c
     Objects/object.c
     Objects/abstract.c
