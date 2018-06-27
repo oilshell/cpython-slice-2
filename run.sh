@@ -107,7 +107,7 @@ readonly FILES=(
 )
 
 build() {
-  local out=_tmp/build-$$.pid
+  local out=_tmp/build.log
 
   set +o errexit
   _build "${FILES[@]}" 2>&1 | tee $out

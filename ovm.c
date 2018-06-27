@@ -12,6 +12,7 @@ PyThreadState *_PyThreadState_Current = NULL;
 //
 // from Python/ceval.c
 //
+int _Py_CheckInterval = 100;
 volatile int _Py_Ticker = 0; /* so that we hit a "tick" first thing */
 
 PyThreadState *
